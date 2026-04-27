@@ -212,7 +212,8 @@ export default function ReactionGamesHub() {
       <div className="min-h-screen bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950">
         <button
           onClick={() => setActiveGame(null)}
-          className="absolute top-4 left-4 z-10 bg-black/60 hover:bg-black/80 border border-purple-500/30 text-white rounded-lg px-3 py-2 text-sm backdrop-blur transition-colors"
+          className="fixed left-4 z-10 bg-black/60 hover:bg-black/80 border border-purple-500/30 text-white rounded-lg px-3 py-2 text-sm backdrop-blur transition-colors"
+          style={{ top: 'max(16px, calc(env(safe-area-inset-top) + 8px))' }}
         >
           ← Volver
         </button>
@@ -1071,7 +1072,7 @@ function OddOneOutGame({ onScore, highScore }) {
 function GameShell({ title, children, feedback }) {
   const bgFlash = feedback === "ok" ? "bg-green-500/10" : feedback === "bad" ? "bg-red-500/20" : "";
   return (
-    <div className={`min-h-screen p-4 pt-16 transition-colors duration-200 ${bgFlash}`}>
+    <div className={`min-h-screen p-4 transition-colors duration-200 ${bgFlash}`} style={{ paddingTop: 'max(4rem, calc(env(safe-area-inset-top) + 3.5rem))' }}>
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-6">
           <h2 className="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 tracking-tight">
