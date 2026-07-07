@@ -1,7 +1,7 @@
 {
-  "name": "REACT · Reaction Training",
+  "name": "REACT · Reflejos para Boxeo y Kickboxing",
   "short_name": "REACT",
-  "description": "Hub de juegos para entrenar reflejos y tiempo de reacción",
+  "description": "Entrenamiento cognitivo para deportes de combate: reacción, fintas, precisión y decisión bajo fatiga",
   "start_url": "./",
   "display": "standalone",
   "orientation": "portrait",

@@ -13,13 +13,14 @@ const COLORS = [
 ];
 const shuffle = (arr) => [...arr].sort(() => Math.random() - 0.5);
 
+// Los ids se mantienen estables: son la clave de los récords en localStorage.
 const GAMES = [
-  { id: "reflejos", title: "Reflejos", desc: "Empareja el color antes de que los botones se muevan", icon: "🎯" },
-  { id: "semaforo", title: "Semáforo", desc: "Pulsa en verde · NO pulses en rojo", icon: "🚦" },
-  { id: "apunta", title: "Apunta", desc: "Hit targets fast — entrenamiento de puntería", icon: "🔴" },
-  { id: "secuencia", title: "Secuencia", desc: "Memoriza el patrón y repítelo (Simon)", icon: "🧠" },
-  { id: "reaccion", title: "Reacción Pura", desc: "Espera el verde y pulsa lo más rápido posible", icon: "⚡" },
-  { id: "intruso", title: "Intruso", desc: "Encuentra el color diferente en la cuadrícula", icon: "👁️" },
+  { id: "reflejos", title: "Defensa", desc: "Cada ataque pide su defensa — elige la respuesta correcta (ley de Hick)", icon: "🛡️" },
+  { id: "semaforo", title: "Fintas", desc: "Golpea en verde · NO piques con la finta (Go/No-Go)", icon: "🎭" },
+  { id: "apunta", title: "Precisión", desc: "Blancos pequeños y móviles — colocación sobre volumen", icon: "🎯" },
+  { id: "secuencia", title: "Combinaciones", desc: "Memoriza el combo y repítelo — cada ronda añade un golpe", icon: "🥊" },
+  { id: "reaccion", title: "Contragolpe", desc: "Espera el verde y dispara — reacción simple pura", icon: "⚡" },
+  { id: "intruso", title: "Lectura", desc: "Caza el detalle que no encaja — los micro-gestos delatan el golpe", icon: "👁️" },
 ];
 
 // ============ TRAINING PROGRAM ============
@@ -27,101 +28,101 @@ const GAMES = [
 // en la sesión guiada automática.
 const TRAINING_PROGRAM = {
   1: {
-    name: "Velocidad Pura",
-    subtitle: "Lunes · Baseline Day",
+    name: "Velocidad de Contra",
+    subtitle: "Lunes · Línea base",
     icon: "⚡",
-    why: "Tu tiempo de reacción base define el techo de tus punishes. Si tu baseline es 280ms, nunca vas a castigar un gap de 5f. Hoy medimos dónde estás.",
+    why: "Un jab tarda unos 300 ms en llegar; la reacción visual simple de un boxeador de élite ronda los 200 ms. Si tu línea base es lenta, el contragolpe sale tarde por muy buena que sea tu técnica. Hoy medimos dónde estás y la empujamos.",
     drills: [
-      { gameId: "reaccion", label: "5 intentos", note: "Calibra tu baseline. Apunta a <250ms promedio", plays: 1 },
-      { gameId: "reflejos", label: "3 min", note: "Sube hasta nivel 5 mínimo", plays: 3 },
+      { gameId: "reaccion", label: "5 intentos", note: "Mide tu línea base. Élite: <220ms de promedio", plays: 1 },
+      { gameId: "reflejos", label: "3 partidas", note: "Decisión rápida con pocas opciones", plays: 3 },
       { gameId: "apunta", label: "1 ronda (30s)", note: "Mantén precisión >80%", plays: 1 },
     ],
     total: "~8 min",
   },
   2: {
-    name: "Discriminación",
-    subtitle: "Martes · Brake Training",
-    icon: "🚦",
-    why: "Frenar una reacción ya iniciada es MÁS difícil que reaccionar. Es lo que haces cuando Siegfried bloquea un mixup: el cerebro ya estaba listo para anti-aéreo y hay que cancelar.",
+    name: "Disciplina ante Fintas",
+    subtitle: "Martes · Inhibición de respuesta",
+    icon: "🎭",
+    why: "Morder una finta es regalar el contragolpe. Los estudios de control inhibitorio (tareas Go/No-Go) muestran que los atletas de combate de élite destacan más por FRENAR respuestas que por reaccionar rápido: frenar un golpe ya iniciado cuesta más que lanzarlo.",
     drills: [
-      { gameId: "semaforo", label: "4-5 min", note: "Focus principal. Resiste la tentación de pulsar", plays: 2 },
-      { gameId: "intruso", label: "1 ronda", note: "Discriminación visual fina", plays: 1 },
-      { gameId: "reflejos", label: "2 min", note: "Warmdown", plays: 2 },
+      { gameId: "semaforo", label: "2 partidas", note: "Foco del día. No piques con la finta: cada error es un contra que comes", plays: 2 },
+      { gameId: "intruso", label: "1 ronda", note: "Discriminación visual fina antes de decidir", plays: 1 },
+      { gameId: "reflejos", label: "2 partidas", note: "Vuelta a la calma decidiendo rápido", plays: 2 },
     ],
     total: "~10 min",
   },
   3: {
-    name: "Precisión",
-    subtitle: "Miércoles · Accuracy Day",
+    name: "Precisión de Impacto",
+    subtitle: "Miércoles · Ley de Fitts",
     icon: "🎯",
-    why: "Reaccionar rápido al input equivocado no sirve. Hoy entrenamos reaccionar rápido Y bien. En GBVSR: confirmar correcto antes de gastar meter en super.",
+    why: "La ley de Fitts: a más velocidad, menos precisión. El golpeo eficaz vive en ese límite — mentón, hígado o pierna adelantada son blancos pequeños y móviles. Se entrena la colocación a máxima velocidad, no el volumen.",
     drills: [
-      { gameId: "apunta", label: "2 rondas", note: "Precisión >85% o repite", plays: 2 },
-      { gameId: "intruso", label: "Llega a grid 5×5", note: "Los tonos se parecen más", plays: 1 },
-      { gameId: "reflejos", label: "Solo nivel 7+", note: "Máxima velocidad", plays: 2 },
+      { gameId: "apunta", label: "2 rondas", note: "Precisión >85% o repite — los blancos encogen", plays: 2 },
+      { gameId: "intruso", label: "Llega a grid 5×5", note: "Escaneo amplio: manos arriba, piernas abajo", plays: 1 },
+      { gameId: "reflejos", label: "2 partidas", note: "Decisión correcta a máxima velocidad", plays: 2 },
     ],
     total: "~10 min",
   },
   4: {
-    name: "Memoria y Patrones",
-    subtitle: "Jueves · Pattern Day",
-    icon: "🧠",
-    why: "Fighting games no son solo reacción — son reconocimiento de patrones. Un top player sabe que rival X hace Y, luego Z. Hoy: memoria de trabajo bajo presión.",
+    name: "Combinaciones",
+    subtitle: "Jueves · Memoria de trabajo",
+    icon: "🥊",
+    why: "Un 1-2-3-low kick fluido no se piensa: se recupera de memoria como un solo bloque ('chunking'). Automatizar combinaciones libera atención para leer al rival, que es donde se ganan los asaltos. Hoy: memoria de secuencias bajo presión.",
     drills: [
-      { gameId: "secuencia", label: "Llega a secuencia 10+", note: "No rompas la cadena", plays: 1 },
-      { gameId: "reflejos", label: "Combo x10", note: "Mantén concentración", plays: 2 },
-      { gameId: "reaccion", label: "3 intentos", note: "Mide si la fatiga mental afecta", plays: 1 },
+      { gameId: "secuencia", label: "Llega a 10+ golpes", note: "Un combo largo sin romper la cadena", plays: 1 },
+      { gameId: "reflejos", label: "2 partidas", note: "Mantén la concentración tras memorizar", plays: 2 },
+      { gameId: "reaccion", label: "5 intentos", note: "¿La carga mental te frena la reacción?", plays: 1 },
     ],
     total: "~10 min",
   },
   5: {
-    name: "Circuito Completo",
-    subtitle: "Viernes · Tournament Sim",
+    name: "Simulación de Combate",
+    subtitle: "Viernes · Práctica variada",
     icon: "🔄",
-    why: "En un torneo cambias de contexto todo el tiempo: warmup, match, pausa, match, nervios, análisis. Hoy entrenas switching rápido entre tareas cognitivas distintas.",
+    why: "Un asalto es cambio de contexto constante: atacar, defender, leer, resetear. La investigación en aprendizaje motor (interferencia contextual) muestra que la práctica variada y aleatoria retiene más que repetir lo mismo en bloque. Circuito completo sin pausa.",
     drills: [
-      { gameId: "reaccion", label: "3 intentos", note: "Check-in", plays: 1 },
-      { gameId: "semaforo", label: "2 min", note: "Sin errores", plays: 1 },
-      { gameId: "apunta", label: "1 ronda", note: "Precisión alta", plays: 1 },
-      { gameId: "secuencia", label: "1 run", note: "Memoria activa", plays: 1 },
-      { gameId: "reflejos", label: "2 min", note: "Cierre", plays: 1 },
+      { gameId: "reaccion", label: "5 intentos", note: "Activación", plays: 1 },
+      { gameId: "semaforo", label: "1 partida", note: "Sin picar ni una finta", plays: 1 },
+      { gameId: "apunta", label: "1 ronda", note: "Colocación limpia", plays: 1 },
+      { gameId: "secuencia", label: "1 run", note: "Combo en memoria", plays: 1 },
+      { gameId: "reflejos", label: "1 partida", note: "Cierre decidiendo rápido", plays: 1 },
     ],
     total: "~12 min",
   },
   6: {
-    name: "Max Effort",
-    subtitle: "Sábado · Push Day",
+    name: "Decisión Bajo Fatiga",
+    subtitle: "Sábado · Resistencia mental",
     icon: "🔥",
-    why: "Los sábados van largos. Ataca tus dos drills más débiles el doble de tiempo. El progreso real ocurre saliendo de la zona de confort.",
+    why: "La mayoría de los KOs llegan en asaltos tardíos, cuando la fatiga degrada las decisiones antes que el físico. El entrenamiento de resistencia cerebral (tareas cognitivas en estado de fatiga) mejora la toma de decisiones al final del combate. Ideal justo después de tu sesión física: sesión larga, precisión cuando ya no queda frescura.",
     drills: [
-      { gameId: "reflejos", label: "Intenta nivel 10+", note: "Sesión larga, sin parar", plays: 3 },
-      { gameId: "semaforo", label: "5+ min", note: "Precisión bajo fatiga", plays: 2 },
-      { gameId: "apunta", label: "2 rondas", note: "Empuja tu high score", plays: 2 },
+      { gameId: "reflejos", label: "3 partidas seguidas", note: "Sin parar entre partidas", plays: 3 },
+      { gameId: "semaforo", label: "2 partidas", note: "Disciplina ante la finta, ya cansado", plays: 2 },
+      { gameId: "apunta", label: "2 rondas", note: "Que la precisión no caiga con la fatiga", plays: 2 },
     ],
     total: "~15 min",
   },
   0: {
-    name: "Descanso Activo",
-    subtitle: "Domingo · Recovery",
+    name: "Recuperación",
+    subtitle: "Domingo · Consolidación",
     icon: "🌙",
-    why: "La recuperación ES parte del entrenamiento. Un drill corto mantiene el hábito sin acumular fatiga. El cerebro consolida gains mientras descansa.",
+    why: "El cerebro consolida el aprendizaje motor durante el descanso y el sueño, no acumulando volumen. Un estímulo corto y sin presión mantiene el hábito sin frenar la recuperación.",
     drills: [
-      { gameId: "reaccion", label: "5 intentos relax", note: "Sin presión, solo feel", plays: 1 },
-      { gameId: "intruso", label: "1 ronda suave", note: "Ojo visual", plays: 1 },
+      { gameId: "reaccion", label: "5 intentos relax", note: "Sin presión, solo sentir la señal", plays: 1 },
+      { gameId: "intruso", label: "1 ronda suave", note: "Mantener el ojo activo", plays: 1 },
     ],
     total: "~5 min",
   },
 };
 
 const QUICK_WARMUP = {
-  name: "Calentamiento Pre-Match",
-  subtitle: "5 min antes de jugar competitivo",
+  name: "Activación Pre-Sparring",
+  subtitle: "5 min antes de guantear o competir",
   icon: "🔥",
-  why: "Rutina corta para activar reflejos justo antes de entrar a ranked o torneo. NO es entrenamiento — es despertar el sistema.",
+  why: "La activación moderada mejora el tiempo de reacción (curva en U invertida de Yerkes-Dodson): ni frío ni pasado de vueltas. 5 minutos de reacción despiertan el sistema nervioso sin gastar gasolina — esto NO es entrenamiento, es encender la máquina.",
   drills: [
     { gameId: "reaccion", label: "3 intentos rápidos", note: "Despierta el nervio", plays: 1 },
-    { gameId: "reflejos", label: "1-2 min", note: "Activa visión periférica", plays: 1 },
-    { gameId: "apunta", label: "30s", note: "Mano caliente", plays: 1 },
+    { gameId: "reflejos", label: "1 partida", note: "Activa la decisión rápida", plays: 1 },
+    { gameId: "apunta", label: "30s", note: "Mano caliente y ojo fino", plays: 1 },
   ],
   total: "~5 min",
 };
@@ -235,7 +236,7 @@ export default function ReactionGamesHub() {
             react
           </h1>
           <p className="text-zinc-500 text-sm mt-1">
-            Entrenamiento de reflejos
+            Reflejos para boxeo y kickboxing
           </p>
         </div>
 
@@ -262,7 +263,7 @@ export default function ReactionGamesHub() {
         )}
 
         <div className="mt-12 text-zinc-600 text-xs">
-          Entrena tus reflejos · Road to EVO France 2026
+          Entrenamiento cognitivo para deportes de combate
         </div>
       </div>
     </div>
@@ -355,8 +356,8 @@ function TrainingView({ onSelectGame, onStartSession, streak, completedToday, co
         <div className="flex items-center gap-3">
           <div className="text-xl">🔥</div>
           <div className="text-left flex-1">
-            <div className="text-zinc-100 font-medium text-sm">Calentamiento Pre-Match</div>
-            <div className="text-zinc-500 text-xs">5 min antes de ranked o torneo</div>
+            <div className="text-zinc-100 font-medium text-sm">Activación Pre-Sparring</div>
+            <div className="text-zinc-500 text-xs">5 min antes de guantear o competir</div>
           </div>
           <div className="text-xs text-zinc-500">{showWarmup ? "✓ Activo" : "Ver →"}</div>
         </div>
@@ -736,10 +737,10 @@ function ColorMatchGame({ onScore, highScore, autoPlay }) {
   };
 
   return (
-    <GameShell title="Reflejos" feedback={feedback}>
+    <GameShell title="Defensa" feedback={feedback}>
       {state === "idle" && !autoPlay && (
-        <StartScreen icon="🎯" title="Reflejos"
-          desc="30 segundos. Haz clic en el color objetivo. UN SOLO FALLO y pierdes. Más nivel = más colores a elegir."
+        <StartScreen icon="🛡️" title="Defensa"
+          desc="Cada ataque pide su defensa. Encuentra el color objetivo entre las opciones — a más nivel, más opciones y más lenta la decisión (ley de Hick). Un solo fallo y estás fuera."
           highScore={highScore} onStart={start} />
       )}
       {state === "playing" && (
@@ -751,7 +752,7 @@ function ColorMatchGame({ onScore, highScore, autoPlay }) {
             { label: "Hits", value: hits },
           ]} />
           <div className="text-center text-xs tracking-widest text-zinc-500 uppercase mb-2 mt-4">
-            Encuentra este color
+            Responde a este ataque
           </div>
           <div className="h-28 rounded-2xl mb-6"
             style={{ backgroundColor: target.hex }} />
@@ -858,10 +859,10 @@ function GoNoGoGame({ onScore, highScore, autoPlay }) {
   };
 
   return (
-    <GameShell title="Semáforo">
+    <GameShell title="Fintas">
       {state === "idle" && !autoPlay && (
-        <StartScreen icon="🚦" title="Semáforo"
-          desc="Verde = PULSA. Rojo = NO pulses. Tu cerebro tiene que frenar tan rápido como reacciona."
+        <StartScreen icon="🎭" title="Fintas"
+          desc="Verde = golpe real, GOLPEA. Rojo = finta, NO piques. Frenar un golpe ya iniciado cuesta más que lanzarlo — eso es control inhibitorio."
           highScore={highScore} onStart={start} />
       )}
       {state === "playing" && (
@@ -878,7 +879,7 @@ function GoNoGoGame({ onScore, highScore, autoPlay }) {
               backgroundColor: signal === "go" ? "#22c55e" : signal === "nogo" ? "#ef4444" : "#18181b",
             }}>
             <span className={`text-3xl md:text-4xl font-semibold tracking-wide ${signal ? "text-white" : "text-zinc-500"}`}>
-              {signal === "go" ? "¡Pulsa!" : signal === "nogo" ? "¡No!" : "Espera..."}
+              {signal === "go" ? "¡Golpea!" : signal === "nogo" ? "¡Finta!" : "Espera..."}
             </span>
           </button>
           {bestRT && (
@@ -951,10 +952,10 @@ function AimTrainerGame({ onScore, highScore, autoPlay }) {
   const accuracy = hits + misses > 0 ? Math.round((hits / (hits + misses)) * 100) : 0;
 
   return (
-    <GameShell title="Apunta">
+    <GameShell title="Precisión">
       {state === "idle" && !autoPlay && (
-        <StartScreen icon="🔴" title="Apunta"
-          desc="30 segundos. Clica los objetivos rojos. Fallar resta puntos. Se hacen más pequeños con cada hit."
+        <StartScreen icon="🎯" title="Precisión"
+          desc="30 segundos. Golpea los blancos rojos: mentón, hígado, pierna. Fallar resta puntos y los blancos encogen con cada impacto — velocidad y precisión compiten (ley de Fitts)."
           highScore={highScore} onStart={start} />
       )}
       {state === "playing" && (
@@ -1047,10 +1048,10 @@ function SimonGame({ onScore, highScore, autoPlay }) {
   };
 
   return (
-    <GameShell title="Secuencia">
+    <GameShell title="Combinaciones">
       {state === "idle" && !autoPlay && (
-        <StartScreen icon="🧠" title="Secuencia"
-          desc="Memoriza el patrón y repítelo. Cada ronda añade un color. Un error = game over."
+        <StartScreen icon="🥊" title="Combinaciones"
+          desc="Memoriza la combinación y repítela. Cada ronda añade un golpe, como aprender un combo nuevo: 1-2… 1-2-3… Un error y se rompe la cadena."
           highScore={highScore} onStart={start} />
       )}
       {state === "playing" && (
@@ -1130,10 +1131,10 @@ function ReactionTimerGame({ onScore, highScore, autoPlay }) {
   const best = reactions.length > 0 ? Math.min(...reactions) : null;
 
   return (
-    <GameShell title="Reacción Pura">
+    <GameShell title="Contragolpe">
       {state === "idle" && reactions.length === 0 && !autoPlay && (
-        <StartScreen icon="⚡" title="Reacción Pura"
-          desc={`Cuando la pantalla se ponga VERDE, pulsa lo más rápido posible. Si pulsas antes = falta. ${ATTEMPTS} intentos. Promedio humano: 250ms.`}
+        <StartScreen icon="⚡" title="Contragolpe"
+          desc={`Cuando la pantalla se ponga VERDE, golpea lo más rápido posible. Antes de tiempo = te comes el contra. ${ATTEMPTS} intentos. Promedio humano: 250ms · élite del boxeo: ~200ms.`}
           highScore={highScore > 0 ? `${Math.round(50000 / highScore)}ms avg` : 0}
           onStart={beginAttempt} />
       )}
@@ -1150,7 +1151,7 @@ function ReactionTimerGame({ onScore, highScore, autoPlay }) {
             style={{ backgroundColor: bg }}>
             <span className="text-white text-2xl md:text-3xl font-semibold tracking-wide text-center px-4">
               {state === "waiting" && "Espera al verde..."}
-              {state === "go" && "¡Pulsa!"}
+              {state === "go" && "¡Golpea!"}
               {state === "tooEarly" && "Muy pronto · Toca para continuar"}
               {state === "result" && (
                 <>
@@ -1241,10 +1242,10 @@ function OddOneOutGame({ onScore, highScore, autoPlay }) {
   };
 
   return (
-    <GameShell title="Intruso">
+    <GameShell title="Lectura">
       {state === "idle" && !autoPlay && (
-        <StartScreen icon="👁️" title="Intruso"
-          desc="Encuentra el cuadro con color diferente. 30s. Aciertos = +2s. Fallos = −3s. Los colores se parecen más cada ronda."
+        <StartScreen icon="👁️" title="Lectura"
+          desc="Encuentra el cuadro que no encaja — como cazar el micro-gesto que delata el golpe. 30s. Aciertos = +2s. Fallos = −3s. Cada ronda las diferencias son más sutiles y la cuadrícula más amplia."
           highScore={highScore} onStart={start} />
       )}
       {state === "playing" && (
