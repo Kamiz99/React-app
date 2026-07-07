@@ -23,6 +23,8 @@ const GAMES = [
 ];
 
 // ============ TRAINING PROGRAM ============
+// `plays` = cuántas partidas completas de ese juego forman el ejercicio
+// en la sesión guiada automática.
 const TRAINING_PROGRAM = {
   1: {
     name: "Velocidad Pura",
@@ -30,9 +32,9 @@ const TRAINING_PROGRAM = {
     icon: "⚡",
     why: "Tu tiempo de reacción base define el techo de tus punishes. Si tu baseline es 280ms, nunca vas a castigar un gap de 5f. Hoy medimos dónde estás.",
     drills: [
-      { gameId: "reaccion", label: "5 intentos", note: "Calibra tu baseline. Apunta a <250ms promedio" },
-      { gameId: "reflejos", label: "3 min", note: "Sube hasta nivel 5 mínimo" },
-      { gameId: "apunta", label: "1 ronda (30s)", note: "Mantén precisión >80%" },
+      { gameId: "reaccion", label: "5 intentos", note: "Calibra tu baseline. Apunta a <250ms promedio", plays: 1 },
+      { gameId: "reflejos", label: "3 min", note: "Sube hasta nivel 5 mínimo", plays: 3 },
+      { gameId: "apunta", label: "1 ronda (30s)", note: "Mantén precisión >80%", plays: 1 },
     ],
     total: "~8 min",
   },
@@ -42,9 +44,9 @@ const TRAINING_PROGRAM = {
     icon: "🚦",
     why: "Frenar una reacción ya iniciada es MÁS difícil que reaccionar. Es lo que haces cuando Siegfried bloquea un mixup: el cerebro ya estaba listo para anti-aéreo y hay que cancelar.",
     drills: [
-      { gameId: "semaforo", label: "4-5 min", note: "Focus principal. Resiste la tentación de pulsar" },
-      { gameId: "intruso", label: "1 ronda", note: "Discriminación visual fina" },
-      { gameId: "reflejos", label: "2 min", note: "Warmdown" },
+      { gameId: "semaforo", label: "4-5 min", note: "Focus principal. Resiste la tentación de pulsar", plays: 2 },
+      { gameId: "intruso", label: "1 ronda", note: "Discriminación visual fina", plays: 1 },
+      { gameId: "reflejos", label: "2 min", note: "Warmdown", plays: 2 },
     ],
     total: "~10 min",
   },
@@ -54,9 +56,9 @@ const TRAINING_PROGRAM = {
     icon: "🎯",
     why: "Reaccionar rápido al input equivocado no sirve. Hoy entrenamos reaccionar rápido Y bien. En GBVSR: confirmar correcto antes de gastar meter en super.",
     drills: [
-      { gameId: "apunta", label: "2 rondas", note: "Precisión >85% o repite" },
-      { gameId: "intruso", label: "Llega a grid 5×5", note: "Los tonos se parecen más" },
-      { gameId: "reflejos", label: "Solo nivel 7+", note: "Máxima velocidad" },
+      { gameId: "apunta", label: "2 rondas", note: "Precisión >85% o repite", plays: 2 },
+      { gameId: "intruso", label: "Llega a grid 5×5", note: "Los tonos se parecen más", plays: 1 },
+      { gameId: "reflejos", label: "Solo nivel 7+", note: "Máxima velocidad", plays: 2 },
     ],
     total: "~10 min",
   },
@@ -66,9 +68,9 @@ const TRAINING_PROGRAM = {
     icon: "🧠",
     why: "Fighting games no son solo reacción — son reconocimiento de patrones. Un top player sabe que rival X hace Y, luego Z. Hoy: memoria de trabajo bajo presión.",
     drills: [
-      { gameId: "secuencia", label: "Llega a secuencia 10+", note: "No rompas la cadena" },
-      { gameId: "reflejos", label: "Combo x10", note: "Mantén concentración" },
-      { gameId: "reaccion", label: "3 intentos", note: "Mide si la fatiga mental afecta" },
+      { gameId: "secuencia", label: "Llega a secuencia 10+", note: "No rompas la cadena", plays: 1 },
+      { gameId: "reflejos", label: "Combo x10", note: "Mantén concentración", plays: 2 },
+      { gameId: "reaccion", label: "3 intentos", note: "Mide si la fatiga mental afecta", plays: 1 },
     ],
     total: "~10 min",
   },
@@ -78,11 +80,11 @@ const TRAINING_PROGRAM = {
     icon: "🔄",
     why: "En un torneo cambias de contexto todo el tiempo: warmup, match, pausa, match, nervios, análisis. Hoy entrenas switching rápido entre tareas cognitivas distintas.",
     drills: [
-      { gameId: "reaccion", label: "3 intentos", note: "Check-in" },
-      { gameId: "semaforo", label: "2 min", note: "Sin errores" },
-      { gameId: "apunta", label: "1 ronda", note: "Precisión alta" },
-      { gameId: "secuencia", label: "1 run", note: "Memoria activa" },
-      { gameId: "reflejos", label: "2 min", note: "Cierre" },
+      { gameId: "reaccion", label: "3 intentos", note: "Check-in", plays: 1 },
+      { gameId: "semaforo", label: "2 min", note: "Sin errores", plays: 1 },
+      { gameId: "apunta", label: "1 ronda", note: "Precisión alta", plays: 1 },
+      { gameId: "secuencia", label: "1 run", note: "Memoria activa", plays: 1 },
+      { gameId: "reflejos", label: "2 min", note: "Cierre", plays: 1 },
     ],
     total: "~12 min",
   },
@@ -92,9 +94,9 @@ const TRAINING_PROGRAM = {
     icon: "🔥",
     why: "Los sábados van largos. Ataca tus dos drills más débiles el doble de tiempo. El progreso real ocurre saliendo de la zona de confort.",
     drills: [
-      { gameId: "reflejos", label: "Intenta nivel 10+", note: "Sesión larga, sin parar" },
-      { gameId: "semaforo", label: "5+ min", note: "Precisión bajo fatiga" },
-      { gameId: "apunta", label: "2 rondas", note: "Empuja tu high score" },
+      { gameId: "reflejos", label: "Intenta nivel 10+", note: "Sesión larga, sin parar", plays: 3 },
+      { gameId: "semaforo", label: "5+ min", note: "Precisión bajo fatiga", plays: 2 },
+      { gameId: "apunta", label: "2 rondas", note: "Empuja tu high score", plays: 2 },
     ],
     total: "~15 min",
   },
@@ -104,8 +106,8 @@ const TRAINING_PROGRAM = {
     icon: "🌙",
     why: "La recuperación ES parte del entrenamiento. Un drill corto mantiene el hábito sin acumular fatiga. El cerebro consolida gains mientras descansa.",
     drills: [
-      { gameId: "reaccion", label: "5 intentos relax", note: "Sin presión, solo feel" },
-      { gameId: "intruso", label: "1 ronda suave", note: "Ojo visual" },
+      { gameId: "reaccion", label: "5 intentos relax", note: "Sin presión, solo feel", plays: 1 },
+      { gameId: "intruso", label: "1 ronda suave", note: "Ojo visual", plays: 1 },
     ],
     total: "~5 min",
   },
@@ -117,9 +119,9 @@ const QUICK_WARMUP = {
   icon: "🔥",
   why: "Rutina corta para activar reflejos justo antes de entrar a ranked o torneo. NO es entrenamiento — es despertar el sistema.",
   drills: [
-    { gameId: "reaccion", label: "3 intentos rápidos", note: "Despierta el nervio" },
-    { gameId: "reflejos", label: "1-2 min", note: "Activa visión periférica" },
-    { gameId: "apunta", label: "30s", note: "Mano caliente" },
+    { gameId: "reaccion", label: "3 intentos rápidos", note: "Despierta el nervio", plays: 1 },
+    { gameId: "reflejos", label: "1-2 min", note: "Activa visión periférica", plays: 1 },
+    { gameId: "apunta", label: "30s", note: "Mano caliente", plays: 1 },
   ],
   total: "~5 min",
 };
@@ -161,6 +163,7 @@ function calculateStreak(dates) {
 export default function ReactionGamesHub() {
   const [view, setView] = useState("games");
   const [activeGame, setActiveGame] = useState(null);
+  const [session, setSession] = useState(null); // { program, mark }
   const [highScores, setHighScores] = useState({});
   const [completedDates, setCompletedDates] = useState([]);
 
@@ -179,25 +182,32 @@ export default function ReactionGamesHub() {
 
   const markTodayComplete = () => {
     const today = new Date().toISOString().slice(0, 10);
-    if (completedDates.includes(today)) return;
-    const next = [...completedDates, today].sort();
-    setCompletedDates(next);
-    saveToStorage("completedDates", next);
+    setCompletedDates((prev) => {
+      if (prev.includes(today)) return prev;
+      const next = [...prev, today].sort();
+      saveToStorage("completedDates", next);
+      return next;
+    });
   };
 
   const todayStr = new Date().toISOString().slice(0, 10);
   const completedToday = completedDates.includes(todayStr);
   const streak = calculateStreak(completedDates);
 
-  const gameComponents = {
-    reflejos: ColorMatchGame,
-    semaforo: GoNoGoGame,
-    apunta: AimTrainerGame,
-    secuencia: SimonGame,
-    reaccion: ReactionTimerGame,
-    intruso: OddOneOutGame,
-  };
-  const GameComponent = activeGame ? gameComponents[activeGame] : null;
+  if (session) {
+    return (
+      <TrainingSession
+        program={session.program}
+        markOnFinish={session.mark}
+        highScores={highScores}
+        updateHighScore={updateHighScore}
+        onFinish={markTodayComplete}
+        onExit={() => setSession(null)}
+      />
+    );
+  }
+
+  const GameComponent = activeGame ? GAME_COMPONENTS[activeGame] : null;
 
   if (activeGame) {
     return (
@@ -244,9 +254,9 @@ export default function ReactionGamesHub() {
         {view === "training" && (
           <TrainingView
             onSelectGame={setActiveGame}
+            onStartSession={(program, mark) => setSession({ program, mark })}
             streak={streak}
             completedToday={completedToday}
-            onMarkComplete={markTodayComplete}
             completedDates={completedDates}
           />
         )}
@@ -307,7 +317,7 @@ function GamesGrid({ highScores, onSelect }) {
 }
 
 // ============ TRAINING VIEW ============
-function TrainingView({ onSelectGame, streak, completedToday, onMarkComplete, completedDates }) {
+function TrainingView({ onSelectGame, onStartSession, streak, completedToday, completedDates }) {
   const [selectedDay, setSelectedDay] = useState(new Date().getDay());
   const [showWarmup, setShowWarmup] = useState(false);
   const today = new Date().getDay();
@@ -404,6 +414,18 @@ function TrainingView({ onSelectGame, streak, completedToday, onMarkComplete, co
 
         <div className="p-5 space-y-5">
           <div>
+            <button
+              onClick={() => onStartSession(program, !showWarmup)}
+              className="w-full py-3 rounded-full bg-zinc-100 hover:bg-white text-zinc-900 font-medium text-sm transition-colors active:scale-[0.99]"
+            >
+              ▶ Iniciar sesión automática
+            </button>
+            <p className="text-zinc-500 text-xs text-center mt-2">
+              Los ejercicios se encadenan solos{!showWarmup && " y la sesión se registra al terminar"} · {program.total}
+            </p>
+          </div>
+
+          <div>
             <div className="text-zinc-500 text-[10px] uppercase tracking-widest mb-1.5">Por qué esto importa</div>
             <p className="text-zinc-400 text-sm leading-relaxed">{program.why}</p>
           </div>
@@ -435,20 +457,6 @@ function TrainingView({ onSelectGame, streak, completedToday, onMarkComplete, co
               })}
             </div>
           </div>
-
-          {isToday && (
-            <button
-              onClick={onMarkComplete}
-              disabled={completedToday}
-              className={`w-full py-3 rounded-full font-medium text-sm transition-colors ${
-                completedToday
-                  ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 cursor-default"
-                  : "bg-zinc-100 hover:bg-white text-zinc-900 active:scale-[0.99]"
-              }`}
-            >
-              {completedToday ? "✓ Sesión de hoy completada" : "Marcar sesión completada"}
-            </button>
-          )}
         </div>
       </div>
 
@@ -490,8 +498,177 @@ function StatCard({ label, value, subtitle, highlight }) {
   );
 }
 
+// ============ GUIDED AUTO SESSION ============
+// Encadena los ejercicios del programa sin intervención: cuenta atrás,
+// el juego arranca solo, al terminar pasa al siguiente y al final la
+// sesión se registra automáticamente.
+function TrainingSession({ program, markOnFinish, highScores, updateHighScore, onFinish, onExit }) {
+  const drills = program.drills;
+  const totalPlays = drills.reduce((a, d) => a + (d.plays || 1), 0);
+
+  const [drillIdx, setDrillIdx] = useState(0);
+  const [play, setPlay] = useState(0); // partidas completadas del ejercicio actual
+  const [phase, setPhase] = useState("intro"); // intro | playing | rest | done
+  const [countdown, setCountdown] = useState(3);
+  const [results, setResults] = useState([]);
+  const [lastScore, setLastScore] = useState(null);
+  const endGuard = useRef(false);
+  const finishGuard = useRef(false);
+
+  const drill = drills[drillIdx];
+  const game = GAMES.find((g) => g.id === drill.gameId);
+  const plays = drill.plays || 1;
+  const playsDone = drills.slice(0, drillIdx).reduce((a, d) => a + (d.plays || 1), 0) + play;
+  const GameComponent = GAME_COMPONENTS[drill.gameId];
+
+  const isLastPlay = play + 1 >= plays;
+  const nextDrill = isLastPlay ? drills[drillIdx + 1] : null;
+  const nextGame = nextDrill ? GAMES.find((g) => g.id === nextDrill.gameId) : null;
+
+  const advance = useCallback(() => {
+    endGuard.current = false;
+    setLastScore(null);
+    if (play + 1 < plays) {
+      setPlay(play + 1);
+      setPhase("playing");
+    } else if (drillIdx + 1 < drills.length) {
+      setDrillIdx(drillIdx + 1);
+      setPlay(0);
+      setCountdown(3);
+      setPhase("intro");
+    } else {
+      setPhase("done");
+    }
+  }, [play, plays, drillIdx, drills.length]);
+
+  useEffect(() => {
+    if (phase !== "intro" && phase !== "rest") return;
+    const t = setTimeout(() => {
+      if (countdown > 1) { setCountdown((c) => c - 1); return; }
+      if (phase === "intro") { endGuard.current = false; setPhase("playing"); }
+      else advance();
+    }, 1000);
+    return () => clearTimeout(t);
+  }, [phase, countdown, advance]);
+
+  useEffect(() => {
+    if (phase !== "done" || finishGuard.current) return;
+    finishGuard.current = true;
+    if (markOnFinish) onFinish();
+  }, [phase, markOnFinish, onFinish]);
+
+  const handleGameEnd = (score) => {
+    if (endGuard.current) return;
+    endGuard.current = true;
+    updateHighScore(drill.gameId, score);
+    setLastScore(score);
+    setResults((r) => [...r, { icon: game?.icon, title: game?.title, score }]);
+    setCountdown(3);
+    setPhase("rest");
+  };
+
+  return (
+    <div className="min-h-screen bg-zinc-950">
+      <div className="fixed left-0 right-0 z-10 px-4" style={{ top: 'max(12px, calc(env(safe-area-inset-top) + 6px))' }}>
+        <div className="max-w-2xl mx-auto flex items-center gap-3">
+          <button
+            onClick={onExit}
+            className="bg-zinc-900/90 hover:bg-zinc-800 border border-zinc-800 text-zinc-400 hover:text-zinc-200 rounded-full px-3 py-1.5 text-xs backdrop-blur transition-colors"
+          >
+            ✕ Salir
+          </button>
+          <div className="flex-1 h-1 rounded-full bg-zinc-800 overflow-hidden">
+            <div
+              className="h-full bg-zinc-300 transition-all duration-500"
+              style={{ width: `${phase === "done" ? 100 : Math.round((playsDone / totalPlays) * 100)}%` }}
+            />
+          </div>
+          <div className="text-zinc-500 text-xs whitespace-nowrap">
+            {phase === "done" ? "✓" : `${Math.min(drillIdx + 1, drills.length)}/${drills.length}`}
+          </div>
+        </div>
+      </div>
+
+      {phase === "intro" && (
+        <SessionScreen>
+          <div className="text-zinc-500 text-xs uppercase tracking-widest mb-4">
+            Ejercicio {drillIdx + 1} de {drills.length}
+          </div>
+          <div className="text-5xl mb-4">{game?.icon}</div>
+          <h2 className="text-xl font-medium text-zinc-100 mb-1">{game?.title}</h2>
+          <div className="text-zinc-400 text-sm mb-1">{drill.label}{plays > 1 && ` · ${plays} partidas`}</div>
+          <p className="text-zinc-500 text-sm mb-6">{drill.note}</p>
+          <div className="text-zinc-500 text-xs uppercase tracking-widest">Empieza en</div>
+          <div className="text-4xl font-semibold text-zinc-100 mt-1">{countdown}</div>
+        </SessionScreen>
+      )}
+
+      {phase === "playing" && (
+        <GameComponent
+          key={`${drillIdx}-${play}`}
+          autoPlay
+          onScore={handleGameEnd}
+          highScore={highScores[drill.gameId] || 0}
+        />
+      )}
+
+      {phase === "rest" && (
+        <SessionScreen>
+          <div className="text-zinc-500 text-xs uppercase tracking-widest mb-4">Ronda completada</div>
+          <div className="text-5xl font-semibold text-zinc-100 mb-6">{lastScore}</div>
+          <p className="text-zinc-400 text-sm mb-6">
+            {!isLastPlay
+              ? `Siguiente: ${game?.title} · partida ${play + 2} de ${plays}`
+              : nextGame
+              ? `Siguiente: ${nextGame.title} · ${nextDrill.label}`
+              : "Cerrando sesión..."}
+          </p>
+          <div className="text-zinc-500 text-xs uppercase tracking-widest">Continúa en</div>
+          <div className="text-4xl font-semibold text-zinc-100 mt-1">{countdown}</div>
+        </SessionScreen>
+      )}
+
+      {phase === "done" && (
+        <SessionScreen>
+          <div className="text-5xl mb-4">{program.icon}</div>
+          <h2 className="text-xl font-medium text-zinc-100 mb-1">Sesión completada</h2>
+          <p className="text-zinc-500 text-sm mb-6">{program.name} · {program.total}</p>
+          <div className="space-y-2 mb-6 text-left">
+            {results.map((r, i) => (
+              <div key={i} className="flex items-center gap-3 bg-zinc-800/40 rounded-xl p-3">
+                <div className="text-lg">{r.icon}</div>
+                <div className="flex-1 text-zinc-200 text-sm">{r.title}</div>
+                <div className="text-zinc-100 font-medium text-sm font-mono">{r.score}</div>
+              </div>
+            ))}
+          </div>
+          {markOnFinish && (
+            <div className="text-emerald-400 text-sm mb-6">✓ Registrada en tu racha</div>
+          )}
+          <button
+            onClick={onExit}
+            className="bg-zinc-100 hover:bg-white text-zinc-900 font-medium py-3 px-8 rounded-full transition-colors active:scale-[0.98]"
+          >
+            Volver
+          </button>
+        </SessionScreen>
+      )}
+    </div>
+  );
+}
+
+function SessionScreen({ children }) {
+  return (
+    <div className="min-h-screen flex items-center justify-center p-6" style={{ paddingTop: 'max(4rem, calc(env(safe-area-inset-top) + 3.5rem))' }}>
+      <div className="bg-zinc-900/50 border border-zinc-800/80 rounded-2xl p-8 text-center max-w-md w-full">
+        {children}
+      </div>
+    </div>
+  );
+}
+
 // ============ GAME 1: COLOR MATCH ============
-function ColorMatchGame({ onScore, highScore }) {
+function ColorMatchGame({ onScore, highScore, autoPlay }) {
   const [state, setState] = useState("idle");
   const [target, setTarget] = useState(COLORS[0]);
   const [buttons, setButtons] = useState(COLORS.slice(0, 4));
@@ -516,6 +693,13 @@ function ColorMatchGame({ onScore, highScore }) {
   const start = () => {
     setScore(0); setTimeLeft(30); setLevel(1); setCombo(0); setHits(0); setState("playing"); newRound(1);
   };
+
+  useEffect(() => {
+    if (!autoPlay) return;
+    const t = setTimeout(start, 400);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (state !== "playing") return;
@@ -553,7 +737,7 @@ function ColorMatchGame({ onScore, highScore }) {
 
   return (
     <GameShell title="Reflejos" feedback={feedback}>
-      {state === "idle" && (
+      {state === "idle" && !autoPlay && (
         <StartScreen icon="🎯" title="Reflejos"
           desc="30 segundos. Haz clic en el color objetivo. UN SOLO FALLO y pierdes. Más nivel = más colores a elegir."
           highScore={highScore} onStart={start} />
@@ -589,7 +773,7 @@ function ColorMatchGame({ onScore, highScore }) {
 }
 
 // ============ GAME 2: GO / NO-GO ============
-function GoNoGoGame({ onScore, highScore }) {
+function GoNoGoGame({ onScore, highScore, autoPlay }) {
   const [state, setState] = useState("idle");
   const [signal, setSignal] = useState(null);
   const [score, setScore] = useState(0);
@@ -636,6 +820,13 @@ function GoNoGoGame({ onScore, highScore }) {
 
   useEffect(() => () => clearTimeout(timeoutRef.current), []);
 
+  useEffect(() => {
+    if (!autoPlay) return;
+    const t = setTimeout(start, 400);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const click = () => {
     if (state !== "playing") return;
     if (signal === "go") {
@@ -668,7 +859,7 @@ function GoNoGoGame({ onScore, highScore }) {
 
   return (
     <GameShell title="Semáforo">
-      {state === "idle" && (
+      {state === "idle" && !autoPlay && (
         <StartScreen icon="🚦" title="Semáforo"
           desc="Verde = PULSA. Rojo = NO pulses. Tu cerebro tiene que frenar tan rápido como reacciona."
           highScore={highScore} onStart={start} />
@@ -707,7 +898,7 @@ function GoNoGoGame({ onScore, highScore }) {
 }
 
 // ============ GAME 3: AIM TRAINER ============
-function AimTrainerGame({ onScore, highScore }) {
+function AimTrainerGame({ onScore, highScore, autoPlay }) {
   const [state, setState] = useState("idle");
   const [target, setTarget] = useState({ x: 50, y: 50, size: 80 });
   const [score, setScore] = useState(0);
@@ -735,6 +926,13 @@ function AimTrainerGame({ onScore, highScore }) {
   };
 
   useEffect(() => {
+    if (!autoPlay) return;
+    const t = setTimeout(start, 400);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
     if (state !== "playing") return;
     timerRef.current = setInterval(() => {
       setTimeLeft((t) => {
@@ -754,7 +952,7 @@ function AimTrainerGame({ onScore, highScore }) {
 
   return (
     <GameShell title="Apunta">
-      {state === "idle" && (
+      {state === "idle" && !autoPlay && (
         <StartScreen icon="🔴" title="Apunta"
           desc="30 segundos. Clica los objetivos rojos. Fallar resta puntos. Se hacen más pequeños con cada hit."
           highScore={highScore} onStart={start} />
@@ -788,7 +986,7 @@ function AimTrainerGame({ onScore, highScore }) {
 }
 
 // ============ GAME 4: SIMON ============
-function SimonGame({ onScore, highScore }) {
+function SimonGame({ onScore, highScore, autoPlay }) {
   const pads = [
     { id: 0, color: "#22c55e" },
     { id: 1, color: "#ef4444" },
@@ -822,6 +1020,13 @@ function SimonGame({ onScore, highScore }) {
     setTimeout(() => playSequence(first), 500);
   };
 
+  useEffect(() => {
+    if (!autoPlay) return;
+    const t = setTimeout(start, 400);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const click = (id) => {
     if (state !== "playing" || showing) return;
     setActivePad(id);
@@ -843,7 +1048,7 @@ function SimonGame({ onScore, highScore }) {
 
   return (
     <GameShell title="Secuencia">
-      {state === "idle" && (
+      {state === "idle" && !autoPlay && (
         <StartScreen icon="🧠" title="Secuencia"
           desc="Memoriza el patrón y repítelo. Cada ronda añade un color. Un error = game over."
           highScore={highScore} onStart={start} />
@@ -878,7 +1083,7 @@ function SimonGame({ onScore, highScore }) {
 }
 
 // ============ GAME 5: REACTION TIMER ============
-function ReactionTimerGame({ onScore, highScore }) {
+function ReactionTimerGame({ onScore, highScore, autoPlay }) {
   const [state, setState] = useState("idle");
   const [startTime, setStartTime] = useState(null);
   const [reactions, setReactions] = useState([]);
@@ -891,6 +1096,13 @@ function ReactionTimerGame({ onScore, highScore }) {
     const delay = 1500 + Math.random() * 3000;
     timeoutRef.current = setTimeout(() => { setStartTime(Date.now()); setState("go"); }, delay);
   };
+
+  useEffect(() => {
+    if (!autoPlay) return;
+    const t = setTimeout(beginAttempt, 400);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const click = () => {
     if (state === "idle" || state === "result" || state === "done") {
@@ -919,7 +1131,7 @@ function ReactionTimerGame({ onScore, highScore }) {
 
   return (
     <GameShell title="Reacción Pura">
-      {state === "idle" && reactions.length === 0 && (
+      {state === "idle" && reactions.length === 0 && !autoPlay && (
         <StartScreen icon="⚡" title="Reacción Pura"
           desc={`Cuando la pantalla se ponga VERDE, pulsa lo más rápido posible. Si pulsas antes = falta. ${ATTEMPTS} intentos. Promedio humano: 250ms.`}
           highScore={highScore > 0 ? `${Math.round(50000 / highScore)}ms avg` : 0}
@@ -961,7 +1173,7 @@ function ReactionTimerGame({ onScore, highScore }) {
 }
 
 // ============ GAME 6: ODD ONE OUT ============
-function OddOneOutGame({ onScore, highScore }) {
+function OddOneOutGame({ onScore, highScore, autoPlay }) {
   const [state, setState] = useState("idle");
   const [grid, setGrid] = useState([]);
   const [oddIdx, setOddIdx] = useState(0);
@@ -1001,6 +1213,13 @@ function OddOneOutGame({ onScore, highScore }) {
   };
 
   useEffect(() => {
+    if (!autoPlay) return;
+    const t = setTimeout(start, 400);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
     if (state !== "playing") return;
     timerRef.current = setInterval(() => {
       setTimeLeft((t) => {
@@ -1023,7 +1242,7 @@ function OddOneOutGame({ onScore, highScore }) {
 
   return (
     <GameShell title="Intruso">
-      {state === "idle" && (
+      {state === "idle" && !autoPlay && (
         <StartScreen icon="👁️" title="Intruso"
           desc="Encuentra el cuadro con color diferente. 30s. Aciertos = +2s. Fallos = −3s. Los colores se parecen más cada ronda."
           highScore={highScore} onStart={start} />
@@ -1053,6 +1272,15 @@ function OddOneOutGame({ onScore, highScore }) {
     </GameShell>
   );
 }
+
+const GAME_COMPONENTS = {
+  reflejos: ColorMatchGame,
+  semaforo: GoNoGoGame,
+  apunta: AimTrainerGame,
+  secuencia: SimonGame,
+  reaccion: ReactionTimerGame,
+  intruso: OddOneOutGame,
+};
 
 // ============ SHARED UI ============
 function GameShell({ title, children, feedback }) {
