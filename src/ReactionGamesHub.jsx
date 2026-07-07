@@ -1256,8 +1256,8 @@ function OddOneOutGame({ onScore, highScore, autoPlay }) {
             { label: "Ronda", value: round + 1 },
             { label: "Grid", value: `${gridSize}×${gridSize}` },
           ]} />
-          <div className="grid gap-1 mt-6 mx-auto"
-            style={{ gridTemplateColumns: `repeat(${gridSize}, 1fr)`, maxWidth: "min(90vw, 500px)" }}>
+          <div className="grid gap-1 mt-6 mx-auto w-full"
+            style={{ gridTemplateColumns: `repeat(${gridSize}, 1fr)`, maxWidth: "min(100%, 48vh, 420px)" }}>
             {grid.map((c, i) => (
               <button key={i} onClick={() => click(i)}
                 className="aspect-square rounded-lg active:scale-90 transition-transform"
