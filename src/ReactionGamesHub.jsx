@@ -14,12 +14,12 @@ const COLORS = [
 const shuffle = (arr) => [...arr].sort(() => Math.random() - 0.5);
 
 const GAMES = [
-  { id: "reflejos", title: "Reflejos", desc: "Empareja el color antes de que los botones se muevan", icon: "🎯", color: "from-purple-600 to-pink-600" },
-  { id: "semaforo", title: "Semáforo", desc: "Pulsa en verde · NO pulses en rojo", icon: "🚦", color: "from-green-600 to-red-600" },
-  { id: "apunta", title: "Apunta", desc: "Hit targets fast — entrenamiento de puntería", icon: "🔴", color: "from-orange-600 to-red-600" },
-  { id: "secuencia", title: "Secuencia", desc: "Memoriza el patrón y repítelo (Simon)", icon: "🧠", color: "from-blue-600 to-cyan-600" },
-  { id: "reaccion", title: "Reacción Pura", desc: "Espera el verde y pulsa lo más rápido posible", icon: "⚡", color: "from-yellow-600 to-green-600" },
-  { id: "intruso", title: "Intruso", desc: "Encuentra el color diferente en la cuadrícula", icon: "👁️", color: "from-indigo-600 to-purple-600" },
+  { id: "reflejos", title: "Reflejos", desc: "Empareja el color antes de que los botones se muevan", icon: "🎯" },
+  { id: "semaforo", title: "Semáforo", desc: "Pulsa en verde · NO pulses en rojo", icon: "🚦" },
+  { id: "apunta", title: "Apunta", desc: "Hit targets fast — entrenamiento de puntería", icon: "🔴" },
+  { id: "secuencia", title: "Secuencia", desc: "Memoriza el patrón y repítelo (Simon)", icon: "🧠" },
+  { id: "reaccion", title: "Reacción Pura", desc: "Espera el verde y pulsa lo más rápido posible", icon: "⚡" },
+  { id: "intruso", title: "Intruso", desc: "Encuentra el color diferente en la cuadrícula", icon: "👁️" },
 ];
 
 // ============ TRAINING PROGRAM ============
@@ -28,7 +28,6 @@ const TRAINING_PROGRAM = {
     name: "Velocidad Pura",
     subtitle: "Lunes · Baseline Day",
     icon: "⚡",
-    color: "from-yellow-500 to-orange-500",
     why: "Tu tiempo de reacción base define el techo de tus punishes. Si tu baseline es 280ms, nunca vas a castigar un gap de 5f. Hoy medimos dónde estás.",
     drills: [
       { gameId: "reaccion", label: "5 intentos", note: "Calibra tu baseline. Apunta a <250ms promedio" },
@@ -41,7 +40,6 @@ const TRAINING_PROGRAM = {
     name: "Discriminación",
     subtitle: "Martes · Brake Training",
     icon: "🚦",
-    color: "from-green-500 to-red-500",
     why: "Frenar una reacción ya iniciada es MÁS difícil que reaccionar. Es lo que haces cuando Siegfried bloquea un mixup: el cerebro ya estaba listo para anti-aéreo y hay que cancelar.",
     drills: [
       { gameId: "semaforo", label: "4-5 min", note: "Focus principal. Resiste la tentación de pulsar" },
@@ -54,7 +52,6 @@ const TRAINING_PROGRAM = {
     name: "Precisión",
     subtitle: "Miércoles · Accuracy Day",
     icon: "🎯",
-    color: "from-orange-500 to-red-500",
     why: "Reaccionar rápido al input equivocado no sirve. Hoy entrenamos reaccionar rápido Y bien. En GBVSR: confirmar correcto antes de gastar meter en super.",
     drills: [
       { gameId: "apunta", label: "2 rondas", note: "Precisión >85% o repite" },
@@ -67,7 +64,6 @@ const TRAINING_PROGRAM = {
     name: "Memoria y Patrones",
     subtitle: "Jueves · Pattern Day",
     icon: "🧠",
-    color: "from-blue-500 to-cyan-500",
     why: "Fighting games no son solo reacción — son reconocimiento de patrones. Un top player sabe que rival X hace Y, luego Z. Hoy: memoria de trabajo bajo presión.",
     drills: [
       { gameId: "secuencia", label: "Llega a secuencia 10+", note: "No rompas la cadena" },
@@ -80,7 +76,6 @@ const TRAINING_PROGRAM = {
     name: "Circuito Completo",
     subtitle: "Viernes · Tournament Sim",
     icon: "🔄",
-    color: "from-purple-500 to-pink-500",
     why: "En un torneo cambias de contexto todo el tiempo: warmup, match, pausa, match, nervios, análisis. Hoy entrenas switching rápido entre tareas cognitivas distintas.",
     drills: [
       { gameId: "reaccion", label: "3 intentos", note: "Check-in" },
@@ -95,7 +90,6 @@ const TRAINING_PROGRAM = {
     name: "Max Effort",
     subtitle: "Sábado · Push Day",
     icon: "🔥",
-    color: "from-red-500 to-orange-600",
     why: "Los sábados van largos. Ataca tus dos drills más débiles el doble de tiempo. El progreso real ocurre saliendo de la zona de confort.",
     drills: [
       { gameId: "reflejos", label: "Intenta nivel 10+", note: "Sesión larga, sin parar" },
@@ -108,7 +102,6 @@ const TRAINING_PROGRAM = {
     name: "Descanso Activo",
     subtitle: "Domingo · Recovery",
     icon: "🌙",
-    color: "from-indigo-500 to-purple-500",
     why: "La recuperación ES parte del entrenamiento. Un drill corto mantiene el hábito sin acumular fatiga. El cerebro consolida gains mientras descansa.",
     drills: [
       { gameId: "reaccion", label: "5 intentos relax", note: "Sin presión, solo feel" },
@@ -122,7 +115,6 @@ const QUICK_WARMUP = {
   name: "Calentamiento Pre-Match",
   subtitle: "5 min antes de jugar competitivo",
   icon: "🔥",
-  color: "from-pink-500 to-red-500",
   why: "Rutina corta para activar reflejos justo antes de entrar a ranked o torneo. NO es entrenamiento — es despertar el sistema.",
   drills: [
     { gameId: "reaccion", label: "3 intentos rápidos", note: "Despierta el nervio" },
@@ -209,10 +201,10 @@ export default function ReactionGamesHub() {
 
   if (activeGame) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950">
+      <div className="min-h-screen bg-zinc-950">
         <button
           onClick={() => setActiveGame(null)}
-          className="fixed left-4 z-10 bg-black/60 hover:bg-black/80 border border-purple-500/30 text-white rounded-lg px-3 py-2 text-sm backdrop-blur transition-colors"
+          className="fixed left-4 z-10 bg-zinc-900/90 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 rounded-full px-4 py-2 text-sm backdrop-blur transition-colors"
           style={{ top: 'max(16px, calc(env(safe-area-inset-top) + 8px))' }}
         >
           ← Volver
@@ -226,25 +218,24 @@ export default function ReactionGamesHub() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950">
-      <div className="max-w-3xl mx-auto p-4 pt-8 pb-12">
-        <div className="text-center mb-6">
-          <h1 className="text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-purple-400 mb-2 tracking-tight">
-            REACT
+    <div className="min-h-screen bg-zinc-950">
+      <div className="max-w-3xl mx-auto p-5 pt-12 pb-16">
+        <div className="mb-10">
+          <h1 className="text-3xl font-semibold text-zinc-100 tracking-tight">
+            react
           </h1>
-          <p className="text-purple-300/70 text-xs md:text-sm tracking-[0.3em] uppercase">
-            Reaction Training Hub
+          <p className="text-zinc-500 text-sm mt-1">
+            Entrenamiento de reflejos
           </p>
         </div>
 
-        <div className="flex gap-2 mb-6 bg-black/30 p-1 rounded-xl border border-purple-500/20">
-          <TabButton active={view === "games"} onClick={() => setView("games")} label="Juegos" icon="🎮" />
+        <div className="flex gap-1 mb-8 bg-zinc-900/60 p-1 rounded-full border border-zinc-800/80 w-fit">
+          <TabButton active={view === "games"} onClick={() => setView("games")} label="Juegos" />
           <TabButton
             active={view === "training"}
             onClick={() => setView("training")}
             label="Entrenamiento"
-            icon="📅"
-            badge={streak > 0 ? `${streak}🔥` : null}
+            badge={streak > 0 ? `${streak}` : null}
           />
         </div>
 
@@ -260,7 +251,7 @@ export default function ReactionGamesHub() {
           />
         )}
 
-        <div className="text-center mt-8 text-purple-300/40 text-xs">
+        <div className="mt-12 text-zinc-600 text-xs">
           Entrena tus reflejos · Road to EVO France 2026
         </div>
       </div>
@@ -268,19 +259,18 @@ export default function ReactionGamesHub() {
   );
 }
 
-function TabButton({ active, onClick, label, icon, badge }) {
+function TabButton({ active, onClick, label, badge }) {
   return (
     <button
       onClick={onClick}
-      className={`flex-1 py-3 rounded-lg font-bold text-sm transition-all flex items-center justify-center gap-2 ${
+      className={`px-5 py-2 rounded-full text-sm transition-colors flex items-center gap-2 ${
         active
-          ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg"
-          : "text-purple-200/60 hover:text-white hover:bg-white/5"
+          ? "bg-zinc-800 text-zinc-100"
+          : "text-zinc-500 hover:text-zinc-300"
       }`}
     >
-      <span>{icon}</span>
       <span>{label}</span>
-      {badge && <span className="text-xs bg-black/30 px-2 py-0.5 rounded-full">{badge}</span>}
+      {badge && <span className="text-xs text-amber-300/90">{badge}🔥</span>}
     </button>
   );
 }
@@ -292,22 +282,22 @@ function GamesGrid({ highScores, onSelect }) {
         <button
           key={g.id}
           onClick={() => onSelect(g.id)}
-          className="group bg-black/40 backdrop-blur border border-purple-500/20 hover:border-purple-400/60 rounded-2xl p-5 text-left transition-all hover:scale-[1.02] active:scale-[0.98]"
+          className="bg-zinc-900/50 border border-zinc-800/80 hover:border-zinc-700 rounded-2xl p-5 text-left transition-colors active:scale-[0.99]"
         >
           <div className="flex items-center gap-4">
-            <div className={`text-4xl w-14 h-14 flex items-center justify-center rounded-xl bg-gradient-to-br ${g.color} shadow-lg`}>
+            <div className="text-2xl w-11 h-11 flex items-center justify-center rounded-xl bg-zinc-800/60">
               {g.icon}
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center justify-between gap-2">
-                <h3 className="text-white font-bold text-lg truncate">{g.title}</h3>
+                <h3 className="text-zinc-100 font-medium truncate">{g.title}</h3>
                 {highScores[g.id] > 0 && (
-                  <span className="text-yellow-400 text-xs font-mono whitespace-nowrap">
-                    🏆 {highScores[g.id]}
+                  <span className="text-amber-300/80 text-xs font-mono whitespace-nowrap">
+                    {highScores[g.id]}
                   </span>
                 )}
               </div>
-              <p className="text-purple-200/60 text-xs mt-1">{g.desc}</p>
+              <p className="text-zinc-500 text-xs mt-1">{g.desc}</p>
             </div>
           </div>
         </button>
@@ -338,36 +328,36 @@ function TrainingView({ onSelectGame, streak, completedToday, onMarkComplete, co
 
   return (
     <div className="space-y-5">
-      <div className="grid grid-cols-3 gap-2">
-        <StatCard label="Racha" value={`${streak}🔥`} subtitle={streak === 1 ? "día" : "días"} highlight={streak >= 3} />
+      <div className="grid grid-cols-3 gap-3">
+        <StatCard label="Racha" value={streak} subtitle={streak === 1 ? "día" : "días"} highlight={streak >= 3} />
         <StatCard label="Total" value={completedDates.length} subtitle="sesiones" />
         <StatCard label="Hoy" value={completedToday ? "✓" : "—"} subtitle={completedToday ? "Listo" : "Pendiente"} highlight={completedToday} />
       </div>
 
       <button
         onClick={() => { setShowWarmup(!showWarmup); setSelectedDay(today); }}
-        className={`w-full rounded-xl p-4 border transition-all ${
+        className={`w-full rounded-2xl p-4 border transition-colors ${
           showWarmup
-            ? "bg-gradient-to-r from-pink-600/30 to-red-600/30 border-pink-400/60"
-            : "bg-black/30 border-purple-500/20 hover:border-pink-400/40"
+            ? "bg-zinc-900 border-zinc-600"
+            : "bg-zinc-900/50 border-zinc-800/80 hover:border-zinc-700"
         }`}
       >
         <div className="flex items-center gap-3">
-          <div className="text-2xl">🔥</div>
+          <div className="text-xl">🔥</div>
           <div className="text-left flex-1">
-            <div className="text-white font-bold text-sm">Calentamiento Pre-Match</div>
-            <div className="text-purple-200/60 text-xs">5 min antes de ranked o torneo</div>
+            <div className="text-zinc-100 font-medium text-sm">Calentamiento Pre-Match</div>
+            <div className="text-zinc-500 text-xs">5 min antes de ranked o torneo</div>
           </div>
-          <div className="text-xs text-purple-300/60">{showWarmup ? "✓ Activo" : "Ver →"}</div>
+          <div className="text-xs text-zinc-500">{showWarmup ? "✓ Activo" : "Ver →"}</div>
         </div>
       </button>
 
       {!showWarmup && (
         <div>
-          <div className="text-xs uppercase tracking-wider text-purple-300/60 mb-2 px-1">
+          <div className="text-xs uppercase tracking-widest text-zinc-500 mb-2 px-1">
             Programa semanal
           </div>
-          <div className="grid grid-cols-7 gap-1">
+          <div className="grid grid-cols-7 gap-1.5">
             {[1, 2, 3, 4, 5, 6, 0].map((d) => {
               const p = TRAINING_PROGRAM[d];
               const active = selectedDay === d;
@@ -376,18 +366,18 @@ function TrainingView({ onSelectGame, streak, completedToday, onMarkComplete, co
                 <button
                   key={d}
                   onClick={() => setSelectedDay(d)}
-                  className={`rounded-lg p-2 text-center border transition-all ${
+                  className={`rounded-xl p-2 text-center border transition-colors ${
                     active
-                      ? "bg-gradient-to-br " + p.color + " border-white/40 shadow-lg"
+                      ? "bg-zinc-800 border-zinc-600"
                       : isTodayBtn
-                      ? "bg-white/5 border-yellow-400/40 hover:bg-white/10"
-                      : "bg-black/30 border-purple-500/10 hover:bg-white/5"
+                      ? "bg-zinc-900/50 border-amber-300/30 hover:border-zinc-600"
+                      : "bg-zinc-900/50 border-zinc-800/60 hover:border-zinc-700"
                   }`}
                 >
-                  <div className={`text-[10px] uppercase ${active ? "text-white/80" : "text-purple-300/60"}`}>
+                  <div className={`text-[10px] uppercase ${active ? "text-zinc-300" : "text-zinc-600"}`}>
                     {DAY_SHORT[d]}
                   </div>
-                  <div className="text-xl">{p.icon}</div>
+                  <div className="text-lg">{p.icon}</div>
                 </button>
               );
             })}
@@ -395,31 +385,31 @@ function TrainingView({ onSelectGame, streak, completedToday, onMarkComplete, co
         </div>
       )}
 
-      <div className={`bg-black/40 backdrop-blur border rounded-2xl overflow-hidden ${isToday ? "border-yellow-400/40" : "border-purple-500/30"}`}>
-        <div className={`bg-gradient-to-r ${program.color} p-5`}>
+      <div className="bg-zinc-900/50 border border-zinc-800/80 rounded-2xl overflow-hidden">
+        <div className="p-5 border-b border-zinc-800/80">
           <div className="flex items-center gap-3">
-            <div className="text-4xl">{program.icon}</div>
+            <div className="text-2xl">{program.icon}</div>
             <div className="flex-1">
               <div className="flex items-center gap-2">
-                <h3 className="text-white font-black text-xl">{program.name}</h3>
+                <h3 className="text-zinc-100 font-medium text-lg">{program.name}</h3>
                 {isToday && (
-                  <span className="bg-yellow-400 text-black text-[10px] font-bold px-2 py-0.5 rounded-full">HOY</span>
+                  <span className="bg-amber-300/10 text-amber-300 text-[10px] font-medium px-2 py-0.5 rounded-full border border-amber-300/30">Hoy</span>
                 )}
               </div>
-              <p className="text-white/70 text-xs">{program.subtitle}</p>
+              <p className="text-zinc-500 text-xs">{program.subtitle}</p>
             </div>
-            <div className="text-white/80 text-xs font-mono">{program.total}</div>
+            <div className="text-zinc-500 text-xs font-mono">{program.total}</div>
           </div>
         </div>
 
-        <div className="p-5 space-y-4">
-          <div className="bg-white/5 rounded-lg p-3">
-            <div className="text-purple-300/60 text-[10px] uppercase tracking-wider mb-1">Por qué esto importa</div>
-            <p className="text-purple-100/90 text-sm leading-relaxed">{program.why}</p>
+        <div className="p-5 space-y-5">
+          <div>
+            <div className="text-zinc-500 text-[10px] uppercase tracking-widest mb-1.5">Por qué esto importa</div>
+            <p className="text-zinc-400 text-sm leading-relaxed">{program.why}</p>
           </div>
 
           <div>
-            <div className="text-purple-300/60 text-[10px] uppercase tracking-wider mb-2">Ejercicios</div>
+            <div className="text-zinc-500 text-[10px] uppercase tracking-widest mb-2">Ejercicios</div>
             <div className="space-y-2">
               {program.drills.map((d, i) => {
                 const game = GAMES.find((g) => g.id === d.gameId);
@@ -427,19 +417,19 @@ function TrainingView({ onSelectGame, streak, completedToday, onMarkComplete, co
                   <button
                     key={i}
                     onClick={() => onSelectGame(d.gameId)}
-                    className="w-full bg-white/5 hover:bg-white/10 border border-white/10 hover:border-purple-400/40 rounded-lg p-3 text-left transition-all flex items-center gap-3 active:scale-[0.98]"
+                    className="w-full bg-zinc-800/40 hover:bg-zinc-800/70 border border-zinc-800 hover:border-zinc-700 rounded-xl p-3 text-left transition-colors flex items-center gap-3 active:scale-[0.99]"
                   >
-                    <div className="bg-black/40 rounded-lg w-10 h-10 flex items-center justify-center text-xl flex-shrink-0">
+                    <div className="bg-zinc-800/80 rounded-lg w-9 h-9 flex items-center justify-center text-lg flex-shrink-0">
                       {game?.icon}
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 flex-wrap">
-                        <span className="text-white font-semibold text-sm">{game?.title}</span>
-                        <span className="text-pink-400 text-xs font-mono">{d.label}</span>
+                        <span className="text-zinc-200 font-medium text-sm">{game?.title}</span>
+                        <span className="text-zinc-500 text-xs font-mono">{d.label}</span>
                       </div>
-                      <div className="text-purple-200/60 text-xs mt-0.5">{d.note}</div>
+                      <div className="text-zinc-500 text-xs mt-0.5">{d.note}</div>
                     </div>
-                    <div className="text-purple-300/40 text-sm">→</div>
+                    <div className="text-zinc-600 text-sm">→</div>
                   </button>
                 );
               })}
@@ -450,10 +440,10 @@ function TrainingView({ onSelectGame, streak, completedToday, onMarkComplete, co
             <button
               onClick={onMarkComplete}
               disabled={completedToday}
-              className={`w-full py-3 rounded-xl font-bold text-sm transition-all ${
+              className={`w-full py-3 rounded-full font-medium text-sm transition-colors ${
                 completedToday
-                  ? "bg-green-500/20 text-green-400 border border-green-500/40 cursor-default"
-                  : "bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white shadow-lg hover:scale-[1.02] active:scale-[0.98]"
+                  ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 cursor-default"
+                  : "bg-zinc-100 hover:bg-white text-zinc-900 active:scale-[0.99]"
               }`}
             >
               {completedToday ? "✓ Sesión de hoy completada" : "Marcar sesión completada"}
@@ -462,18 +452,18 @@ function TrainingView({ onSelectGame, streak, completedToday, onMarkComplete, co
         </div>
       </div>
 
-      <div className="bg-black/40 backdrop-blur border border-purple-500/20 rounded-2xl p-4">
-        <div className="text-xs uppercase tracking-wider text-purple-300/60 mb-3">Últimos 14 días</div>
+      <div className="bg-zinc-900/50 border border-zinc-800/80 rounded-2xl p-4">
+        <div className="text-xs uppercase tracking-widest text-zinc-500 mb-3">Últimos 14 días</div>
         <div className="grid grid-cols-7 gap-1.5">
           {recentDays.map((d) => (
             <div
               key={d.date}
-              className={`aspect-square rounded-md flex items-center justify-center text-xs font-bold transition-colors ${
+              className={`aspect-square rounded-lg flex items-center justify-center text-xs transition-colors ${
                 d.completed
-                  ? "bg-gradient-to-br from-purple-500 to-pink-500 text-white"
+                  ? "bg-zinc-200 text-zinc-900 font-medium"
                   : d.isToday
-                  ? "bg-yellow-400/20 border border-yellow-400/60 text-yellow-400"
-                  : "bg-white/5 text-purple-300/40"
+                  ? "border border-amber-300/40 text-amber-300/90"
+                  : "bg-zinc-800/40 text-zinc-600"
               }`}
               title={d.date}
             >
@@ -481,7 +471,7 @@ function TrainingView({ onSelectGame, streak, completedToday, onMarkComplete, co
             </div>
           ))}
         </div>
-        <div className="flex items-center justify-between mt-3 text-[10px] text-purple-300/50">
+        <div className="flex items-center justify-between mt-3 text-[10px] text-zinc-600">
           <span>Hace 14 días</span>
           <span>Hoy</span>
         </div>
@@ -492,10 +482,10 @@ function TrainingView({ onSelectGame, streak, completedToday, onMarkComplete, co
 
 function StatCard({ label, value, subtitle, highlight }) {
   return (
-    <div className={`bg-black/40 backdrop-blur border rounded-xl p-3 text-center ${highlight ? "border-yellow-400/40" : "border-purple-500/20"}`}>
-      <div className="text-[10px] uppercase tracking-wider text-purple-300/60">{label}</div>
-      <div className={`font-black text-2xl ${highlight ? "text-yellow-400" : "text-white"}`}>{value}</div>
-      <div className="text-[10px] text-purple-300/50">{subtitle}</div>
+    <div className="bg-zinc-900/50 border border-zinc-800/80 rounded-2xl p-3 text-center">
+      <div className="text-[10px] uppercase tracking-widest text-zinc-500">{label}</div>
+      <div className={`font-semibold text-2xl ${highlight ? "text-amber-300" : "text-zinc-100"}`}>{value}</div>
+      <div className="text-[10px] text-zinc-600">{subtitle}</div>
     </div>
   );
 }
@@ -576,16 +566,16 @@ function ColorMatchGame({ onScore, highScore }) {
             { label: "Combo", value: `x${combo}`, highlight: combo >= 5 },
             { label: "Hits", value: hits },
           ]} />
-          <div className="text-center text-xs tracking-widest text-purple-300/60 uppercase mb-2 mt-4">
+          <div className="text-center text-xs tracking-widest text-zinc-500 uppercase mb-2 mt-4">
             Encuentra este color
           </div>
-          <div className="h-28 rounded-2xl border-2 border-white/20 mb-6"
-            style={{ backgroundColor: target.hex, boxShadow: `0 0 60px ${target.hex}80` }} />
+          <div className="h-28 rounded-2xl mb-6"
+            style={{ backgroundColor: target.hex }} />
           <div className={`grid gap-3 ${buttons.length <= 4 ? "grid-cols-2" : buttons.length <= 6 ? "grid-cols-3" : "grid-cols-4"}`}>
             {buttons.map((c, i) => (
               <button key={`${c.hex}-${i}`} onClick={() => click(c)}
-                className="aspect-square rounded-xl border-2 border-white/10 hover:border-white/40 active:scale-90 transition-all hover:scale-105"
-                style={{ backgroundColor: c.hex, boxShadow: `0 4px 20px ${c.hex}60` }} />
+                className="aspect-square rounded-xl active:scale-95 transition-transform hover:opacity-90"
+                style={{ backgroundColor: c.hex }} />
             ))}
           </div>
         </>
@@ -692,18 +682,17 @@ function GoNoGoGame({ onScore, highScore }) {
             { label: "Vidas", value: "❤".repeat(lives) + "♡".repeat(3 - lives) },
           ]} />
           <button onClick={click}
-            className="w-full aspect-square mt-6 rounded-3xl border-4 border-white/10 transition-all duration-100 flex items-center justify-center active:scale-95"
+            className="w-full aspect-square mt-6 rounded-3xl transition-colors duration-100 flex items-center justify-center active:scale-[0.98]"
             style={{
-              backgroundColor: signal === "go" ? "#22c55e" : signal === "nogo" ? "#ef4444" : "#1e1b4b",
-              boxShadow: signal === "go" ? "0 0 100px #22c55e" : signal === "nogo" ? "0 0 100px #ef4444" : "none",
+              backgroundColor: signal === "go" ? "#22c55e" : signal === "nogo" ? "#ef4444" : "#18181b",
             }}>
-            <span className="text-white text-4xl md:text-5xl font-black uppercase tracking-wider drop-shadow-lg">
-              {signal === "go" ? "¡PULSA!" : signal === "nogo" ? "¡NO!" : "Espera..."}
+            <span className={`text-3xl md:text-4xl font-semibold tracking-wide ${signal ? "text-white" : "text-zinc-500"}`}>
+              {signal === "go" ? "¡Pulsa!" : signal === "nogo" ? "¡No!" : "Espera..."}
             </span>
           </button>
           {bestRT && (
-            <div className="text-center mt-4 text-sm text-purple-300/70">
-              Mejor reacción: <span className="text-yellow-400 font-mono font-bold">{bestRT}ms</span>
+            <div className="text-center mt-4 text-sm text-zinc-500">
+              Mejor reacción: <span className="text-zinc-200 font-mono">{bestRT}ms</span>
             </div>
           )}
         </>
@@ -779,12 +768,12 @@ function AimTrainerGame({ onScore, highScore }) {
             { label: "Precisión", value: `${accuracy}%` },
           ]} />
           <div ref={containerRef} onClick={missClick}
-            className="relative w-full h-[400px] md:h-[500px] mt-6 rounded-2xl bg-black/60 border-2 border-purple-500/30 overflow-hidden cursor-crosshair">
+            className="relative w-full h-[400px] md:h-[500px] mt-6 rounded-2xl bg-zinc-900/60 border border-zinc-800 overflow-hidden cursor-crosshair">
             <div onClick={hitTarget}
-              className="absolute rounded-full bg-gradient-to-br from-red-400 to-red-700 border-4 border-white/30 shadow-2xl cursor-pointer transition-all hover:scale-110"
+              className="absolute rounded-full bg-red-500 cursor-pointer transition-transform hover:scale-105"
               style={{
                 left: target.x - target.size / 2, top: target.y - target.size / 2,
-                width: target.size, height: target.size, boxShadow: "0 0 30px #ef4444",
+                width: target.size, height: target.size,
               }} />
           </div>
         </>
@@ -869,16 +858,13 @@ function SimonGame({ onScore, highScore }) {
           <div className="grid grid-cols-2 gap-3 mt-6 max-w-md mx-auto">
             {pads.map((p) => (
               <button key={p.id} onClick={() => click(p.id)} disabled={showing}
-                className={`aspect-square rounded-2xl border-4 transition-all duration-100 ${
-                  activePad === p.id ? "border-white scale-95 brightness-150" : "border-white/10 brightness-75 hover:brightness-100"
+                className={`aspect-square rounded-2xl transition-all duration-100 ${
+                  activePad === p.id ? "scale-95 brightness-125" : "brightness-[0.55] hover:brightness-75"
                 }`}
-                style={{
-                  backgroundColor: p.color,
-                  boxShadow: activePad === p.id ? `0 0 60px ${p.color}` : `0 4px 20px ${p.color}40`,
-                }} />
+                style={{ backgroundColor: p.color }} />
             ))}
           </div>
-          <div className="text-center mt-6 text-sm text-purple-300/60">
+          <div className="text-center mt-6 text-sm text-zinc-500">
             Progreso: {userStep} / {sequence.length}
           </div>
         </>
@@ -927,7 +913,7 @@ function ReactionTimerGame({ onScore, highScore }) {
 
   useEffect(() => () => clearTimeout(timeoutRef.current), []);
 
-  const bg = state === "waiting" ? "#991b1b" : state === "go" ? "#16a34a" : state === "tooEarly" ? "#78350f" : "#1e1b4b";
+  const bg = state === "waiting" ? "#7f1d1d" : state === "go" ? "#16a34a" : state === "tooEarly" ? "#78350f" : "#18181b";
   const avg = reactions.length > 0 ? Math.round(reactions.reduce((a, b) => a + b, 0) / reactions.length) : null;
   const best = reactions.length > 0 ? Math.min(...reactions) : null;
 
@@ -948,16 +934,16 @@ function ReactionTimerGame({ onScore, highScore }) {
             { label: "Mejor", value: best ? `${best}ms` : "—" },
           ]} />
           <button onClick={click}
-            className="w-full aspect-square mt-6 rounded-3xl border-4 border-white/10 transition-all duration-100 flex flex-col items-center justify-center active:scale-95"
-            style={{ backgroundColor: bg, boxShadow: state === "go" ? "0 0 100px #22c55e" : "none" }}>
-            <span className="text-white text-3xl md:text-4xl font-black uppercase tracking-wider drop-shadow-lg text-center px-4">
+            className="w-full aspect-square mt-6 rounded-3xl transition-colors duration-100 flex flex-col items-center justify-center active:scale-[0.98]"
+            style={{ backgroundColor: bg }}>
+            <span className="text-white text-2xl md:text-3xl font-semibold tracking-wide text-center px-4">
               {state === "waiting" && "Espera al verde..."}
-              {state === "go" && "¡¡PULSA!!"}
-              {state === "tooEarly" && "¡Muy pronto! Toca para continuar"}
+              {state === "go" && "¡Pulsa!"}
+              {state === "tooEarly" && "Muy pronto · Toca para continuar"}
               {state === "result" && (
                 <>
                   {currentRT ? `${currentRT}ms` : "Falló"}
-                  <div className="text-base mt-2 opacity-70">Toca para siguiente</div>
+                  <div className="text-base mt-2 opacity-70 font-normal">Toca para siguiente</div>
                 </>
               )}
             </span>
@@ -1054,7 +1040,7 @@ function OddOneOutGame({ onScore, highScore }) {
             style={{ gridTemplateColumns: `repeat(${gridSize}, 1fr)`, maxWidth: "min(90vw, 500px)" }}>
             {grid.map((c, i) => (
               <button key={i} onClick={() => click(i)}
-                className="aspect-square rounded-lg border border-white/5 hover:border-white/30 active:scale-90 transition-transform"
+                className="aspect-square rounded-lg active:scale-90 transition-transform"
                 style={{ backgroundColor: c }} />
             ))}
           </div>
@@ -1070,12 +1056,12 @@ function OddOneOutGame({ onScore, highScore }) {
 
 // ============ SHARED UI ============
 function GameShell({ title, children, feedback }) {
-  const bgFlash = feedback === "ok" ? "bg-green-500/10" : feedback === "bad" ? "bg-red-500/20" : "";
+  const bgFlash = feedback === "ok" ? "bg-emerald-500/5" : feedback === "bad" ? "bg-red-500/10" : "";
   return (
     <div className={`min-h-screen p-4 transition-colors duration-200 ${bgFlash}`} style={{ paddingTop: 'max(4rem, calc(env(safe-area-inset-top) + 3.5rem))' }}>
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-6">
-          <h2 className="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 tracking-tight">
+          <h2 className="text-xl font-medium text-zinc-100 tracking-tight">
             {title}
           </h2>
         </div>
@@ -1090,11 +1076,9 @@ function StatsBar({ items }) {
     <div className="grid gap-2" style={{ gridTemplateColumns: `repeat(${items.length}, 1fr)` }}>
       {items.map((it, i) => (
         <div key={i}
-          className={`bg-black/40 backdrop-blur border rounded-xl p-2 text-center ${
-            it.highlight ? "border-yellow-400/60" : "border-purple-500/20"
-          }`}>
-          <div className="text-[10px] uppercase tracking-wider text-purple-300/60">{it.label}</div>
-          <div className={`font-black text-base md:text-lg ${it.highlight ? "text-yellow-400" : "text-white"}`}>
+          className="bg-zinc-900/50 border border-zinc-800/80 rounded-xl p-2 text-center">
+          <div className="text-[10px] uppercase tracking-widest text-zinc-500">{it.label}</div>
+          <div className={`font-semibold text-base md:text-lg ${it.highlight ? "text-amber-300" : "text-zinc-100"}`}>
             {it.value}
           </div>
         </div>
@@ -1105,14 +1089,14 @@ function StatsBar({ items }) {
 
 function StartScreen({ icon, title, desc, highScore, onStart }) {
   return (
-    <div className="bg-black/40 backdrop-blur border border-purple-500/30 rounded-2xl p-8 text-center">
-      <div className="text-6xl mb-4">{icon}</div>
-      <h2 className="text-2xl font-bold text-white mb-3">{title}</h2>
-      <p className="text-purple-200/80 text-sm mb-6 leading-relaxed">{desc}</p>
-      {highScore > 0 && <div className="text-yellow-400 mb-4 font-semibold">🏆 Récord: {highScore}</div>}
+    <div className="bg-zinc-900/50 border border-zinc-800/80 rounded-2xl p-8 text-center">
+      <div className="text-5xl mb-4">{icon}</div>
+      <h2 className="text-xl font-medium text-zinc-100 mb-3">{title}</h2>
+      <p className="text-zinc-400 text-sm mb-6 leading-relaxed">{desc}</p>
+      {highScore > 0 && <div className="text-amber-300/90 mb-4 text-sm">Récord: {highScore}</div>}
       <button onClick={onStart}
-        className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-3 px-8 rounded-xl shadow-lg shadow-purple-500/50 transition-all hover:scale-105 active:scale-95">
-        EMPEZAR
+        className="bg-zinc-100 hover:bg-white text-zinc-900 font-medium py-3 px-8 rounded-full transition-colors active:scale-[0.98]">
+        Empezar
       </button>
     </div>
   );
@@ -1120,29 +1104,28 @@ function StartScreen({ icon, title, desc, highScore, onStart }) {
 
 function GameOverScreen({ score, isHighScore, stats = [], onRestart, customScoreLabel }) {
   return (
-    <div className="bg-black/40 backdrop-blur border border-pink-500/30 rounded-2xl p-8 text-center mt-6">
-      <div className="text-6xl mb-4">💀</div>
-      <h2 className="text-3xl font-black text-white mb-2">GAME OVER</h2>
+    <div className="bg-zinc-900/50 border border-zinc-800/80 rounded-2xl p-8 text-center mt-6">
+      <h2 className="text-lg font-medium text-zinc-400 mb-2">Fin de la partida</h2>
       {customScoreLabel && (
-        <div className="text-purple-300/60 text-xs uppercase tracking-wider mb-1">{customScoreLabel}</div>
+        <div className="text-zinc-500 text-xs uppercase tracking-widest mb-1">{customScoreLabel}</div>
       )}
-      <div className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 mb-6">
+      <div className="text-5xl font-semibold text-zinc-100 mb-6">
         {score}
       </div>
       {stats.length > 0 && (
         <div className="grid gap-3 mb-6 text-sm" style={{ gridTemplateColumns: `repeat(${stats.length}, 1fr)` }}>
           {stats.map((s, i) => (
-            <div key={i} className="bg-white/5 rounded-lg p-3">
-              <div className="text-purple-300/60 text-xs uppercase tracking-wider">{s.label}</div>
-              <div className="text-white font-bold text-xl">{s.value}</div>
+            <div key={i} className="bg-zinc-800/40 rounded-xl p-3">
+              <div className="text-zinc-500 text-xs uppercase tracking-widest">{s.label}</div>
+              <div className="text-zinc-100 font-medium text-xl">{s.value}</div>
             </div>
           ))}
         </div>
       )}
-      {isHighScore && <div className="text-yellow-400 font-bold mb-4 animate-pulse">🏆 ¡NUEVO RÉCORD!</div>}
+      {isHighScore && <div className="text-amber-300/90 text-sm mb-4">Nuevo récord</div>}
       <button onClick={onRestart}
-        className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-3 px-8 rounded-xl shadow-lg shadow-purple-500/50 transition-all hover:scale-105 active:scale-95">
-        JUGAR DE NUEVO
+        className="bg-zinc-100 hover:bg-white text-zinc-900 font-medium py-3 px-8 rounded-full transition-colors active:scale-[0.98]">
+        Jugar de nuevo
       </button>
     </div>
   );
